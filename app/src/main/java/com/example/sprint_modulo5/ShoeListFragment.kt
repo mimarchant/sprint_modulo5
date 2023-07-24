@@ -13,7 +13,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-@Suppress("UNREACHABLE_CODE")
+
 class ShoeListFragment : Fragment() {
     private var binding: FragmentShoeListBinding? = null
     private var param1: String? = null
@@ -33,11 +33,9 @@ class ShoeListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentShoeListBinding.inflate(inflater, container, false)
-        return binding?.root
-
         initAdapter()
 
-
+        return binding?.root
     }
 
     private fun initAdapter() {
