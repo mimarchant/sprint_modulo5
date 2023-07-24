@@ -1,5 +1,6 @@
 package com.example.sprint_modulo5
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -48,7 +49,12 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
                 .into(binding.shoeImage)
 
             binding.shoeItemContainer.setOnClickListener {
-                Navigation.findNavController(binding.root).navigate(R.id.action_shoeListFragment2_to_shoeDetailFragment3)
+                val bundle = Bundle()
+                bundle.putString("name", shoe.name)
+                bundle.putString("description", shoe.description)
+                bundle.putString("price", priceWithCurrency)
+                bundle.putString("image", shoe.image)
+                Navigation.findNavController(binding.root).navigate(R.id.action_shoeListFragment2_to_shoeDetailFragment3, bundle)
             }
 
           }
