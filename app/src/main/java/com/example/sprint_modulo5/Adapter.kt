@@ -3,6 +3,7 @@ package com.example.sprint_modulo5
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -35,10 +36,6 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
         this.shoes = shoeList.toMutableList()
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(shoe: Shoe)
-    }
-
     inner class ViewHolder(private val binding: ShoeItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(shoe: Shoe) {
             val truncatedName = shoe.name.truncate(20)
@@ -51,11 +48,10 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
                 .into(binding.shoeImage)
 
             binding.shoeItemContainer.setOnClickListener {
-                fragment?.findNavController()?.navigate(R.id.action_shoeListFragment2_to_shoeDetailFragment3)
+                Navigation.findNavController(binding.root).navigate(R.id.action_shoeListFragment2_to_shoeDetailFragment3)
             }
 
           }
-
 
         fun String.truncate(maxLength: Int): String {
             return if (this.length > maxLength) {
