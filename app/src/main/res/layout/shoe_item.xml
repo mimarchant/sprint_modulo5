@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
-    android:layout_margin="4dp">
+    android:layout_height="200dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
 
-        <ImageView
-            android:id="@+id/shoe_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/ic_launcher_background"
-            android:contentDescription="la description"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/shoe_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/shoe_image"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="el anme"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="167dp"
+            android:background="@color/white"
+            android:padding="8dp">
 
-        <!-- Add more views as necessary and constrain them appropriately... -->
+            <ImageView
+                android:id="@+id/shoe_image"
+                android:layout_width="96dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="image_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/shoeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="el texto"
+                android:textColor="@color/purple"
+                app:layout_constraintEnd_toEndOf="@+id/shoe_image"
+                app:layout_constraintStart_toStartOf="@+id/shoe_image"
+                app:layout_constraintTop_toBottomOf="@+id/shoe_image" />
+
+            <TextView
+                android:id="@+id/shoePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="el precio"
+                android:textColor="@color/purple"
+                app:layout_constraintEnd_toEndOf="@+id/shoeName"
+                app:layout_constraintStart_toStartOf="@+id/shoeName"
+                app:layout_constraintTop_toBottomOf="@+id/shoeName" />
+
+            <!-- Add more views as necessary and constrain them appropriately... -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
