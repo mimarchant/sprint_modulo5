@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.sprint_modulo5.databinding.FragmentShoeListBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,13 +34,20 @@ class ShoeListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentShoeListBinding.inflate(inflater, container, false)
-        initAdapter()
 
         return binding?.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        initAdapter()
+    }
+
     private fun initAdapter() {
         val adapter = Adapter()
+        adapter.setFragment(this)
         val shoes = ShoeList.getShoes()
         adapter.setData(shoes)
         binding?.recyclerView?.adapter = adapter
