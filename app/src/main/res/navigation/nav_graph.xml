@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_shoeListFragment2_to_shoeDetailFragment3"
             app:destination="@id/shoeDetailFragment" />
+        <action
+            android:id="@+id/action_shoeListFragment_to_shoppingCart"
+            app:destination="@id/shoppingCart" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetailFragment"
@@ -19,6 +22,15 @@
         tools:layout="@layout/fragment_shoe_detail" >
         <action
             android:id="@+id/action_shoeDetailFragment3_to_shoeListFragment2"
+            app:destination="@id/shoeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingCart"
+        android:name="com.example.sprint_modulo5.ShoppingCart"
+        android:label="fragment_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" >
+        <action
+            android:id="@+id/action_shoppingCart_to_shoeListFragment"
             app:destination="@id/shoeListFragment" />
     </fragment>
 </navigation>

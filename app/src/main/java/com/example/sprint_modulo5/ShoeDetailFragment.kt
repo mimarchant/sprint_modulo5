@@ -1,10 +1,12 @@
 package com.example.sprint_modulo5
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.sprint_modulo5.databinding.FragmentShoeDetailBinding
 
@@ -24,6 +26,18 @@ class ShoeDetailFragment : Fragment() {
     private var param2: String? = null
     private var param3: String? = null
     private var param4: String? = null
+    private var param5: Int? = null
+
+    private var addToCartListener: AddToCartListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is AddToCartListener) {
+            addToCartListener = context
+        } else {
+            throw RuntimeException("$context debe implementar AddToCartListener")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +46,7 @@ class ShoeDetailFragment : Fragment() {
             param2 = it.getString("description")
             param3 = it.getString("price")
             param4 = it.getString("image")
+            param5 = it.getInt("id")
         }
     }
 
@@ -47,6 +62,23 @@ class ShoeDetailFragment : Fragment() {
         Glide.with(binding.root)
             .load(param4)
             .into(binding.shoeDetailImage)
+
+        binding.addToCart.setOnClickListener {
+            val id = param5
+            val name = param1
+            val price = param3?.replace("$", "")?.toInt()
+            val description = param2
+            val image = param4
+
+            if (id != null && name != null && price != null && description != null && image != null) {
+                val shoe = Shoe(id, name, price, description, image)
+                addToCartListener?.onAddToCart(shoe)
+                Toast.makeText(context, "Item añadido a la lista", Toast.LENGTH_SHORT).show()
+            } else {
+                // Show an error message or do something else
+                Toast.makeText(context, "Error al añadir el item a la lista", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         return binding.root
     }

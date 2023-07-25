@@ -2,6 +2,7 @@ package com.example.sprint_modulo5
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -14,6 +15,9 @@ import com.example.sprint_modulo5.databinding.ShoeItemBinding
 class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
     var shoes = mutableListOf<Shoe>()
     private var fragment: Fragment? = null
+    var onShoeRemovedListener: OnShoeRemovedListener? = null
+
+    var showDeleteButton = false
 
     fun setFragment(fragment: Fragment) {
         this.fragment = fragment
@@ -48,12 +52,19 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder>() {
                 .load(shoe.image)
                 .into(binding.shoeImage)
 
+            binding.deleteButton.visibility = if (showDeleteButton) View.VISIBLE else View.GONE
+
+            binding.deleteButton.setOnClickListener {
+                onShoeRemovedListener?.onShoeRemoved(shoe)
+            }
+
             binding.shoeItemContainer.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString("name", shoe.name)
                 bundle.putString("description", shoe.description)
                 bundle.putString("price", priceWithCurrency)
                 bundle.putString("image", shoe.image)
+                bundle.putInt("id", shoe.id)
                 Navigation.findNavController(binding.root).navigate(R.id.action_shoeListFragment2_to_shoeDetailFragment3, bundle)
             }
 
